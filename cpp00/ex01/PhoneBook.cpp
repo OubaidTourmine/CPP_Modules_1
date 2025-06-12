@@ -114,3 +114,61 @@ void *getContact(Contact *contacts, int index)
         }
     }
     nbr = std::atoi(input.c_str());
+    if((nbr >= 0 && nbr <= 7) && index > nbr)
+    {
+        std::cout << "Index : " << nbr << std::endl;
+        std::cout << "First Name : " << contacts[nbr].getFirstName() << std::endl;
+        std::cout << "Last Name : " << contacts[nbr].getLastName() << std::endl;
+        std::cout << "Nick Name : " << contacts[nbr].getNickName() << std::endl;
+        std::cout << "Number : " << contacts[nbr].getNumber() << std::endl;
+        std::cout << "Secret : " << contacts[nbr].getDarkSecret() << std::endl;
+    }
+    else
+        std::cout << "Invalid Index." << std::endl ;
+    return NULL;
+}
+
+void PhoneBook::searchContact()
+{
+    if(index == 0)
+    {
+        std::cout << "No contacts saved !" << std::endl;
+        return ;
+    }
+    std::cout << std::right << std::setw(10) << "Index" << " | "
+    << std::right << std::setw(10) << "First Name" << " | "
+    << std::right << std::setw(10) << "Last Name" << " | "
+    << std::right << std::setw(10) << "Nick Name"<< std::endl
+    << "--------------------------------------------------" << std::endl;
+    for(int i = 0; i < std::min(8, index); i++)
+    {
+        std::cout << std::right << std::setw(10) << i << " | "
+        << std::right << std::setw(10) << tenChar(contacts[i].getFirstName()) << " | "
+        << std::right << std::setw(10) << tenChar(contacts[i].getLastName()) << " | "
+        << std::right << std::setw(10) << tenChar(contacts[i].getNickName()) << std::endl
+        << "--------------------------------------------------" << std::endl;
+    }
+    getContact(contacts, index);
+}
+
+int main ()
+{
+    PhoneBook phoneBook;
+    std::string input;
+    std::cout << "Enter 'ADD', 'SEARCH' or 'EXIT' : ";
+    while(1)
+    {
+        std::getline(std::cin, input);
+        if(input == "ADD")
+            addContact(&phoneBook);
+        else if(input == "SEARCH")
+            phoneBook.searchContact();
+        else if(input == "EXIT")
+            exit(0);
+        else if(std::cin.eof())
+            return 1;
+        else
+            std::cout << "Enter a valid command." << std::endl;
+    }
+    return 0 ;
+}
