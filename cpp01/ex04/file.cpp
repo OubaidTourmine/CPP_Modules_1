@@ -32,3 +32,20 @@ int test (std::string filename, std::string s1, std::string s2)
         if (found == std::string::npos)
         {
             res += text.substr(position);
+            break;
+        }
+        res += text.substr(position, found - position);
+        res += s2;
+        position = found + s1.length();
+    }
+    std::string output_filename = filename + ".replace";
+    std::ofstream output_file(output_filename.c_str());
+    if (!output_file.is_open())
+    {
+        std::cout << "cannot create " << output_filename << "\n";
+        return (1);
+    }
+    output_file << res;
+    std::cout << output_filename << " is created" << "\n";
+    return (0);
+}
