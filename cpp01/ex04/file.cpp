@@ -15,3 +15,20 @@ int test (std::string filename, std::string s1, std::string s2)
         std::cout << "s1 cannot be empty." << "\n";
         return (1);
     }
+    std::string text;
+    std::string line;
+    while (std::getline(file, line))
+    {
+        text = text + line;
+        if (!file.eof())
+            text += '\n';
+    }
+    std::string res;
+    size_t position = 0;
+    size_t found;
+    while (position < text.length())
+    {
+        found = text.find(s1 , position);
+        if (found == std::string::npos)
+        {
+            res += text.substr(position);
