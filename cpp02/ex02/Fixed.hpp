@@ -12,3 +12,17 @@ class Fixed {
         Fixed();
         Fixed(const int num);
         Fixed(const float num);
+        Fixed(Fixed const &oth);
+        ~Fixed();
+        Fixed &operator=(Fixed const &oth);
+        bool operator!=(Fixed const &oth) const;
+        bool operator==(Fixed const &oth) const;
+        bool operator<=(Fixed const &oth) const;
+        bool operator>=(Fixed const &oth) const;
+        bool operator<(Fixed const &oth) const;
+        bool operator>(Fixed const &oth) const;
+        Fixed operator+(Fixed const &oth) const;
+        Fixed operator-(Fixed const &oth) const;
+        Fixed operator*(Fixed const &oth) const;
+        Fixed operator/(Fixed const &oth) const;
+        Fixed &operator++();
