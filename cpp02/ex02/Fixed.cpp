@@ -91,3 +91,97 @@ bool Fixed::operator!=(Fixed const &oth) const
 }
 
 bool Fixed::operator==(Fixed const &oth) const
+{
+    if(this->fixedpoint == oth.fixedpoint)
+	    return true ;
+	return false ;
+}
+
+Fixed Fixed::operator+(Fixed const &oth) const
+{
+    Fixed result;
+    result.setRawBits(fixedpoint + oth.fixedpoint);
+	return (result) ;
+}
+
+Fixed Fixed::operator-(Fixed const &oth) const
+{
+    Fixed result;
+    result.setRawBits(fixedpoint - oth.fixedpoint);
+    return (result) ;
+}
+
+Fixed Fixed::operator*(Fixed const &oth) const
+{
+    Fixed result;
+    result.setRawBits((fixedpoint * oth.fixedpoint) >> fractionalbits);
+    return (result) ;
+}
+
+Fixed Fixed::operator/(Fixed const &oth) const
+{
+    if (oth.fixedpoint == 0)
+	{
+        std::cout << "Error: Division by zero" << std::endl;
+        return (Fixed()) ;
+	}
+    Fixed result;
+    result.setRawBits((fixedpoint << fractionalbits) / oth.fixedpoint);
+    return (result) ;
+}
+
+Fixed &Fixed::operator++()
+{
+	this->fixedpoint += 1;
+	return (*this);
+}
+Fixed &Fixed::operator--()
+{
+	this->fixedpoint -= 1;
+	return (*this);
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed	result;
+
+	result = *this;
+	this->fixedpoint += 1;
+	return (result);
+}
+Fixed Fixed::operator--(int)
+{
+	Fixed	result;
+
+	result = *this;
+	this->fixedpoint -= 1;
+	return (result);
+}
+
+Fixed &Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+Fixed const &Fixed::min(const Fixed &a, const Fixed &b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+Fixed &Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+Fixed const &Fixed::max(const Fixed &a, const Fixed &b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
