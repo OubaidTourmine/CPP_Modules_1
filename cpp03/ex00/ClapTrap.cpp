@@ -32,3 +32,38 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &oth)
     return (*this);
 }
 
+ClapTrap::~ClapTrap()
+{
+    std::cout << "ClapTrap " << name << "destructor called" << std::endl;
+}
+
+void ClapTrap::attack(const std::string& target)
+{
+    if(energyPoints <= 0 || hitPoints <= 0)
+    {
+        std::cout << "ClapTrap " << name << " cannot attack, not enough energy or hit points" << std::endl;
+        return ;
+    }
+    std::cout << "ClapTrap " << name << " attacks " << target << ",causing " << attackDamage << " points of damage!" << std::endl;
+    energyPoints--;
+}
+
+void ClapTrap::takeDamage(unsigned int amount)
+{
+    hitPoints -= amount;
+    std::cout << "ClapTrap " << name << " lost " << amount << " Hit Points" << std::endl;
+    if(hitPoints < 0)
+        hitPoints = 0;
+}
+
+void ClapTrap::beRepaired(unsigned int amount)
+{
+    if(energyPoints <= 0 || hitPoints <= 0)
+    {
+        std::cout << "ClapTrap " << name << " cannot be repaired, not enough energy or hit points" << std::endl;
+        return ;
+    }
+    hitPoints += amount;
+    energyPoints--;
+    std::cout << "ClapTrap " << name << " repairs itself for " << amount << " hit points!" << std::endl;
+}
