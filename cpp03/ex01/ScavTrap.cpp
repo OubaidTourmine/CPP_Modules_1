@@ -18,3 +18,24 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
     std::cout << "ScavTrap " << name << " constructor called" << std::endl;
 }
 
+ScavTrap::ScavTrap(const ScavTrap &oth) : ClapTrap(oth)
+{
+    std::cout << "ScavTrap " << name << " copy constructor called" << std::endl;
+}
+
+ScavTrap &ScavTrap::operator=(const ScavTrap &oth)
+{
+    if(this != &oth)
+        ClapTrap::operator=(oth);
+    return *this;
+}
+
+void ScavTrap::guardGate(void)
+{
+	std::cout << "ScavTrap " << name << " is now in Gatekeeper mode" << std::endl;
+}
+
+ScavTrap::~ScavTrap()
+{
+    std::cout << "Destructor called" << std::endl;
+}
