@@ -25,3 +25,17 @@ FragTrap::FragTrap(const FragTrap &oth) : ClapTrap(oth)
 
 FragTrap &FragTrap::operator=(const FragTrap &oth)
 {
+    if(this != &oth)
+        ClapTrap::operator=(oth);
+    return *this;
+}
+
+void FragTrap::highFivesGuys(void)
+{
+	std::cout << "FragTrap " << name << " is requesting a high five" << std::endl;
+}
+
+FragTrap::~FragTrap()
+{
+    std::cout << "Destructor called" << std::endl;
+}
