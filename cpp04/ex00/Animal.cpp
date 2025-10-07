@@ -28,3 +28,19 @@ Animal &Animal::operator=(Animal const &oth)
 
 Animal::~Animal()
 {
+    std::cout << "Animal destructor called" << std::endl;
+}
+
+std::string Animal::getType() const
+{
+	return (type);
+}
+void Animal::SetType(const std::string &name)
+{
+	this->type = name;
+}
+
+void Animal::makeSound() const
+{
+	std::cout << "Animal sound" << std::endl;
+}
