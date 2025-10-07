@@ -13,3 +13,18 @@ Animal::Animal(std::string type)
 }
 
 Animal::Animal(Animal const &oth)
+{
+    type = oth.type;
+    std::cout << "Animal copy constructor called" << std::endl;
+}
+
+Animal &Animal::operator=(Animal const &oth)
+{
+    if(this != &oth)
+        type = oth.type;
+    std::cout << "Animal overload operator called" << std::endl;
+    return *this;
+}
+
+Animal::~Animal()
+{
