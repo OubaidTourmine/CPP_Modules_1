@@ -28,3 +28,19 @@ wrongAnimal &wrongAnimal::operator=(wrongAnimal const &oth)
 
 wrongAnimal::~wrongAnimal()
 {
+    std::cout << "wrongAnimal destructor called" << std::endl;
+}
+
+std::string wrongAnimal::getName() const
+{
+	return (type);
+}
+void wrongAnimal::SetName(const std::string &name)
+{
+	this->type = name;
+}
+
+void wrongAnimal::makeSound() const
+{
+	std::cout << "Wrong Animal sound" << std::endl;
+}
