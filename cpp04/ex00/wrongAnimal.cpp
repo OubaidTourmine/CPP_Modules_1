@@ -13,3 +13,18 @@ wrongAnimal::wrongAnimal(std::string type)
 }
 
 wrongAnimal::wrongAnimal(wrongAnimal const &oth)
+{
+    type = oth.type;
+    std::cout << "wrongAnimal copy constructor called" << std::endl;
+}
+
+wrongAnimal &wrongAnimal::operator=(wrongAnimal const &oth)
+{
+    if(this != &oth)
+        type = oth.type;
+    std::cout << "wrongAnimal overload operator called" << std::endl;
+    return *this;
+}
+
+wrongAnimal::~wrongAnimal()
+{
