@@ -1,0 +1,23 @@
+SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp wrongAnimal.cpp wrongCat.cpp Brain.cpp
+CXX = c++
+FLAGS = -Wall -Wextra -Werror -std=c++98
+OBJS = $(SRC:.cpp=.o)
+NAME = ex02
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CXX) $(FLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.cpp
+	$(CXX) $(FLAGS) -c $< -o $@
+
+clean:
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
