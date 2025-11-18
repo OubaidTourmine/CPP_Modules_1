@@ -18,3 +18,24 @@ Dog &Dog::operator=(const Dog &other)
     if (this != &other)
     {
         Animal::operator=(other);
+        delete attributes;
+        attributes = new Brain(*other.attributes);
+    }
+    return (*this);
+}
+
+Dog::~Dog()
+{
+    delete attributes;
+    std::cout << "Dog destructor called" << std::endl;
+}
+
+void Dog::makeSound() const
+{
+	std::cout << "Woof Woof!" << std::endl;
+}
+
+Brain* Dog::getBrain() const
+{
+    return this->attributes;
+}
